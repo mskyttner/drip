@@ -38,3 +38,14 @@ function() {
 	as.character(packageDescription("plumber"))
 }
 
+#* @get /sessioninfo
+function() {
+	as.character(sessionInfo())
+}
+
+#* @get /readme
+function(res) {
+   res$status <- 302
+   res$setHeader("Location", "/__docs__/")
+}
+

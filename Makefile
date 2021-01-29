@@ -11,9 +11,8 @@ test-default:
 	docker run --rm siegerts/drip
 
 up:
-	# when adding pr$run() to the entrypoint.R
-	# repeated requests to counter does not increment the counter?
+
 	docker-compose up -d
-	curl http://localhost:8000/counter
-	curl http://localhost:8000/counter
+	firefox http://localhost:8000/counter &
+
 
