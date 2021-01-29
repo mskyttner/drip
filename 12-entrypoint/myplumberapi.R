@@ -7,3 +7,34 @@ function(req){
   req$session$counter <- count + 1
   return(paste0("This is visit #", count))
 }
+
+#* @get /drip/version
+function() {
+	system("drip version", intern = TRUE)
+}
+
+#* @get /drip/routes
+function() {
+	system("drip routes", intern = TRUE)
+}
+
+#* @get /drip/mountdir
+function() {
+	Sys.getenv("PLUMBER_DIR")
+}
+
+#* @get /drip/mountdir/files
+function() {
+	dir(Sys.getenv("PLUMBER_DIR"))
+}
+
+#* @get /plumber/apis/available
+function() {
+	plumber::available_apis()
+}
+
+#* @get /plumber/version
+function() {
+	as.character(packageDescription("plumber"))
+}
+

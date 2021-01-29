@@ -20,6 +20,12 @@ A few observations and questions:
 
 - The default plumber example (gets installed with plumber R package) does not run pr$run() which drip expects?
 - It seems drip needs to run in the present directory for the entrypoint.R used in the example? For details, try to change the `drip --dir` parameter with first changing present working directory.
-- After running `make up` the curl command (see the Makefile) does not increment the counter in the example?
+- Reloads sometimes cause plumber to halt, while the drip process continues. Even if using "restart: always" on the container, won't help because drip is still fine. Could the exit status of plumber (if execution halts) be propagated somehow so that drip can restart it?
 
+When this happens it seems there might be a port clash?
+
+		server_1  | createTcpServer: address already in use
+		server_1  | Error in initialize(...) : Failed to create server
+		server_1  | Calls: <Anonymous> ... <Anonymous> -> startServer -> <Anonymous> -> initialize
+		server_1  | Execution halted
 
